@@ -3,7 +3,7 @@ package amway.olson.amway.test;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-@SpringBootApplication(scanBasePackages = {"amway.olson.amway.test", "calculator"})
+@SpringBootApplication(scanBasePackages = {"amway.olson.amway.test", "calculator", "lottery"})
 public class Application {
 
 	public static void main(String[] args) {

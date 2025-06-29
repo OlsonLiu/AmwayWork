@@ -1,9 +1,8 @@
 package calculator.service;
 
-import calculator.api.ResultDto;
-import calculator.core.Command;
-import calculator.core.OperationCommand;
-import calculator.core.OperationType;
+import calculator.model.ResultDto;
+import calculator.model.OperationCommand;
+import calculator.model.OperationType;
 import jakarta.annotation.PostConstruct;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;

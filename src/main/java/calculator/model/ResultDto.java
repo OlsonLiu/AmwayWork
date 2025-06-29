@@ -1,4 +1,4 @@
-package calculator.api;
+package calculator.model;
 
 import lombok.Builder;
 import lombok.Data;

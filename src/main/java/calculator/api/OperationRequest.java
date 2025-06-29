@@ -1,6 +1,6 @@
 package calculator.api;
 
-import calculator.core.OperationType;
+import calculator.model.OperationType;
 
 import java.math.BigDecimal;
 
