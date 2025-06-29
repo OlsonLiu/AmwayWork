@@ -1,5 +1,8 @@
 package lottery.model;
 
+import lombok.Builder;
+
+@Builder
 public class DrawResponse {
     private String userId;
     private String result;

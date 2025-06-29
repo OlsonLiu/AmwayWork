@@ -2,6 +2,7 @@ package lottery.api;
 
 import lottery.model.DrawRequest;
 import lottery.model.DrawResponse;
+import lottery.model.MultiDrawResponse;
 import lottery.model.StatsResponse;
 import lottery.service.LotteryService;
 import org.springframework.web.bind.annotation.*;
@@ -17,8 +18,8 @@ public class LotteryController {
     }
 
     @PostMapping("/draw")
-    public DrawResponse draw(@RequestBody DrawRequest request) {
-        return lotteryService.draw(request.getUserId());
+    public MultiDrawResponse draw(@RequestBody DrawRequest request) {
+        return lotteryService.multiDraw(request.getUserId(), request.getCount());
     }
 
     @GetMapping("/stats")
