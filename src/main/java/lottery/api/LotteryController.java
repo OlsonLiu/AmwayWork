@@ -1,7 +1,6 @@
 package lottery.api;
 
 import lottery.model.DrawRequest;
-import lottery.model.DrawResponse;
 import lottery.model.MultiDrawResponse;
 import lottery.model.StatsResponse;
 import lottery.service.LotteryService;

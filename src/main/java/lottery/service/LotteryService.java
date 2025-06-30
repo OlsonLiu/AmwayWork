@@ -17,7 +17,7 @@ public class LotteryService {
     public static final String noPrize = "THANK_YOU";
     public static final String duplicate = "DUPLICATE_DRAW";
     private List<Prize> prizeList;
-    private List<String> drawnUsers = new ArrayList<>();
+    private final Set<String> drawnUsers = ConcurrentHashMap.newKeySet();
 
     @PostConstruct
     void init() {
@@ -29,10 +29,12 @@ public class LotteryService {
     }
 
     public MultiDrawResponse multiDraw(String userId, int count) {
-        if (drawnUsers.contains(userId)) {
-            return MultiDrawResponse.builder().userId(userId).results(List.of(duplicate)).build();
+        if (!drawnUsers.add(userId)) {
+            return MultiDrawResponse.builder()
+                    .userId(userId)
+                    .results(List.of(duplicate))
+                    .build();
         }
-        drawnUsers.add(userId);
 
         List<String> results = IntStream.range(0, count)
                 .mapToObj(i -> singleDraw())
@@ -56,8 +58,8 @@ public class LotteryService {
         List<Prize> available = prizeList.stream()
                 .filter(p -> p.getRemaining() > 0)
                 .collect(Collectors.toCollection(ArrayList::new));
-        double thankYouProb = 1.0 - available.stream().mapToDouble(Prize::getProbability).sum();
-        available.add(new Prize(noPrize, thankYouProb, Integer.MAX_VALUE));
+        double noWinProbability = 1.0 - available.stream().mapToDouble(Prize::getProbability).sum();
+        available.add(new Prize(noPrize, noWinProbability, Integer.MAX_VALUE));
         return available;
     }
 
@@ -93,6 +95,6 @@ public class LotteryService {
         for (Prize prize : prizeList) {
             remaining.put(prize.getName(), prize.getRemaining());
         }
-        return new StatsResponse(remaining, drawnUsers.size());
+        return StatsResponse.builder().remaining(remaining).participants(drawnUsers).build();
     }
 }
