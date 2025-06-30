@@ -17,8 +17,14 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(InvalidFormatException.class)
     public ResponseEntity<String> handleInvalidEnum(InvalidFormatException ex) {
         if (ex.getTargetType().isEnum() && ex.getMessage().contains("OperationType")) {
-            return ResponseEntity.badRequest().body("illegal operation type");
+            return ResponseEntity.badRequest().body("Illegal operation type");
         }
         return ResponseEntity.badRequest().body("invalid format");
+    }
+
+    @ExceptionHandler(IllegalArgumentException.class)
+    protected ResponseEntity<Object> handleIllegalArg(IllegalArgumentException ex) {
+        return ResponseEntity.badRequest().body(ex.getMessage());
+
     }
 }

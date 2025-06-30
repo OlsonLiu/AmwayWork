@@ -18,6 +18,9 @@ public class LotteryController {
 
     @PostMapping("/draw")
     public MultiDrawResponse draw(@RequestBody DrawRequest request) {
+        if (request.getUserId() == null) {
+            throw new IllegalArgumentException("userId must not be null");
+        }
         return lotteryService.multiDraw(request.getUserId(), request.getCount());
     }
 
