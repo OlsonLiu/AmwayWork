@@ -61,6 +61,7 @@ POST /calculator/calculate
   "operation": "SUBTRACT"
 }
 ```
+operation : ADD, SUBTRACT, MULTIPLY, DIVIDE
 
 Success:
 
