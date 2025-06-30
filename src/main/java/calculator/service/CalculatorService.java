@@ -25,8 +25,8 @@ public class CalculatorService {
 
     @PostConstruct
     void init() {
-        history     = new ArrayList<>();
-        cursor      = 0;
+        history = new ArrayList<>();
+        cursor = 0;
         lastResult = BigDecimal.ZERO.setScale(6, RoundingMode.HALF_UP);
     }
 
@@ -39,7 +39,6 @@ public class CalculatorService {
         cursor++;
 
         lastResult = cmd.execute();
-        System.out.println("Calculate : cursor:"+cursor+", history:"+history);
         return ResultDto.builder().result(lastResult).build();
     }
 
@@ -53,7 +52,6 @@ public class CalculatorService {
         lastResult = (cursor == 0)
                 ? BigDecimal.ZERO.setScale(6, RoundingMode.HALF_UP)
                 : history.get(cursor - 1).getResult();
-        System.out.println("undo : cursor:"+cursor+", history:"+history);
 
         return ResultDto.builder().result(lastResult).build();
     }
@@ -64,7 +62,6 @@ public class CalculatorService {
         }
         OperationCommand cmd = history.get(cursor++);
         lastResult = cmd.execute();
-        System.out.println("redo : cursor:"+cursor+", history:"+history);
 
         return ResultDto.builder().result(lastResult).build();
     }

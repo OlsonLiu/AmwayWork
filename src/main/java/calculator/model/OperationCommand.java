@@ -28,13 +28,11 @@ public class OperationCommand implements Command {
                 result = left.divide(right, 6, RoundingMode.HALF_UP);
             }
         }
-        System.out.println("left:"+left+", right:"+right+", result:"+result);
         return result.setScale(6, RoundingMode.HALF_UP);
     }
 
     @Override
     public BigDecimal undo() {
-        System.out.println("udo left:"+left+", right:"+right+", result:"+result);
         return left;
     }
 

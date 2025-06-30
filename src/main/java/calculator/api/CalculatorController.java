@@ -31,6 +31,8 @@ public class CalculatorController {
     }
 
     @GetMapping("/current")
-    public BigDecimal current() { return calculatorService.current(); }
+    public BigDecimal current() {
+        return calculatorService.current();
+    }
 }
 

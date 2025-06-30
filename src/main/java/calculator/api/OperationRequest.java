@@ -9,7 +9,8 @@ public class OperationRequest {
     private BigDecimal right;
     private OperationType operation;
 
-    public OperationRequest() { }
+    public OperationRequest() {
+    }
 
     public OperationRequest(BigDecimal left, BigDecimal right, OperationType operation) {
         this.left = left;

@@ -9,7 +9,8 @@ import java.math.BigDecimal;
 public class ResultDto {
     private BigDecimal result;
 
-    public ResultDto() { }
+    public ResultDto() {
+    }
 
     public ResultDto(BigDecimal result) {
         this.result = result;
